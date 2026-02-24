@@ -48,4 +48,4 @@ This workbook queries Microsoft Defender for Endpoint telemetry to:
 
 ## Click below to install it!!
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https%3A%2F%2Fraw.githubusercontent.com%2Flazaridischristos%2FSentinel-Workbook-Process-Investigation%2Frefs%2Fheads%2Fmain%2FSysmon%2520-%2520Process%2520Investigation%2FProcess%2520Investigation%2520-%2520Sysmon.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flazaridischristos%2FSentinel-Workbook-Process-Investigation%2Frefs%2Fheads%2Fmain%2FSysmon%2520-%2520Process%2520Investigation%2FProcess%2520Investigation%2520-%2520Sysmon.json)
