@@ -1,5 +1,3 @@
-# Sentinel-Workbookx-Process-Investigation
-
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Microsoft%20Sentinel-0078D4?style=for-the-badge&logo=microsoft&logoColor=white" alt="Microsoft Sentinel"/>
   <img src="https://img.shields.io/badge/Language-KQL-742774?style=for-the-badge" alt="KQL"/>
@@ -7,14 +5,18 @@
 </p>
 Process Investigation workbooks is a collection of Microsoft Sentinel workbooks that act as a **log-based process explorer**. Unlike traditional tools such as Sysinternals Process Explorer that require live access to a running system, those workbooks reverse-engineer process trees, parent-child relationships, and execution chains entirely from log telemetry already collected in your Sentinel workspace.
 
-## Data Sources
-This workbook supports the following data sources:
+## Data Source
+This workbook supports the following data source:
 
-| Data Sources | Type of Events (Rendered Description) | Key Fields  |
-|:-------------:|:-----------:|:-------------:|
-| Sysmon (Event)   | Process Create <br> Network connection detected, Dns query <br> File created, File Executable Detected, File creation time changed, File Delete logged, File Delete archived <br> Image loaded <br> Registry value set, Registry object added or deleted <br> Process accessed <br> Other Activity | CommandLine, LogonId, ProcessGuid, ParentProcessGuid, Computer <br> SourceIp, SourcePort, DestinationIp, DestinationPort, QueryName, QueryResults <br>  |
-| Security Events | Logon Events (4624 & 4672) <br> Other Events | test |
-
+| Data Source | Log Tables | Key Fields  |
+|:-------------:|:-----------:|:---------------------------------------------:|
+| Defender for Endpoint | DeviceProcessEvents | ProcessCommandLine, LogonId, DeviceName, ProcessUniqueId, InitiatingProcessUniqueId |
+| Defender for Endpoint | DeviceNetworkEvents | InitiatingProcessUniqueId, DeviceName, LocalIP, LocalPort, RemoteIP, RemotePort, RemoteUrl |
+| Defender for Endpoint | DeviceFileEvents | InitiatingProcessUniqueId, DeviceName, ActionType ,FolderPath, FileName, FileSize, SHA1, FileOriginUrl | 
+| Defender for Endpoint | DeviceLogonEvents | DeviceName, LogonId, ActionType, AdditionalFields, IsLocalAdmin, LogonType, Protocol, RemoteIP, InitiatingProcessCommandLine |
+| Defender for Endpoint | DeviceImageLoadEvents | InitiatingProcessUniqueId, DeviceName, FolderPath, FileSize, SHA1 |
+| Defender for Endpoint | DeviceEvents | InitiatingProcessUniqueId, DeviceName, ActionType |
+| Defender for Endpoint | DeviceRegistryEvents | InitiatingProcessUniqueId, DeviceName, ActionType, RegistryValueType, RegistryKey, RegistryValueName, RegistryValueData |
 
 ## Prerequisites
 - A Microsoft Sentinel workspace
