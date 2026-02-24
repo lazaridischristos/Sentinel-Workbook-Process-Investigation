@@ -38,3 +38,6 @@ This workbook queries Microsoft Defender for Endpoint telemetry to:
 | **Logon Activity** | Selecting a session, it will display the logon activity that it is responsible for creating this session.|
 | **Other activity**  | It will display information associated with the **session activity** that is not correlated with a specific process and **device activity** that it is not correlated with any session. |
 
+## Click below to install it!!
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Flazaridischristos%2FSentinel-Workbook-Process-Investigation%2Frefs%2Fheads%2Fmain%2FDefender%2520for%2520Endpoint%2520-%2520Process%2520Investigation%2FProcess%2520Investigation%2520-%2520Defender%2520for%2520Endpoint.json)
