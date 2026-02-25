@@ -29,7 +29,7 @@ Sentinel-Workbook-Process-Investigation/
     |── 📋 README.md
     |── 📋 Sysmon-Parser.txt
     └── 📋 sysmonconfig-excludes-only-custom-includes.xml
-└── 📁 defender-for-endpoint/
+└── 📁 Defender for Endpoint - Process Investigation/
     |── 📋 Process Investigation - Defender for Endpoint.json
     └── 📋 README.md
 ```
