@@ -30,7 +30,7 @@ This workbook queries Microsoft Defender for Endpoint telemetry to:
 
 | Step | What it does |
 |------|-------------|
-| **IOC Hunting** | Filter for processes and machines associated to the IOC searched. |
+| **IOC Hunting** | Filter for processes and machines associated to a specific string searched. |
 | **Process Enumeration** | Lists all observed processes across selected machines within a time window. |
 | **Process & Machine filtering** | Select a specific machine to see all the live sessions associated with it. <br> Additionally, filter for a specific process file name to identify the machines where it was executed. This filtering affects also the live sessions found. |
 | **Parent-Child Relationships** | Reconstructs which process spawned which, building a process tree from log entries. |
