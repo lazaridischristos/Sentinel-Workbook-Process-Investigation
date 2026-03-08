@@ -34,7 +34,7 @@ This workbook works using the following data sources. The Key Fields are importa
 
 
 ## How It Works
-This workbook queries Microsoft Defender for Endpoint telemetry to:
+This workbook queries Sysmon telemetry to:
 
 | Step | What it does |
 |------|-------------|
