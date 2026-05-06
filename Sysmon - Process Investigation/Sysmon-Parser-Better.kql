@@ -1,0 +1,15 @@
+Event
+| where Source == "Microsoft-Windows-Sysmon"
+| extend RenderedDescription = tostring(split(RenderedDescription, ":")[0])
+| extend EventData = parse_xml(EventData).DataItem.EventData.Data
+| extend ParsedData = parse_json(EventData)
+| mv-apply item = ParsedData on (
+    summarize Data = make_bag(pack(tostring(item["@Name"]), tostring(item["#text"])))
+)
+| evaluate bag_unpack(Data):(TimeGenerated:datetime, Source:string, EventLog:string, Computer:string, EventLevel:int, EventLevelName:string, EventID:int, UserName:string, RenderedDescription:string, MG:string, ManagementGroupName:string, _ResourceId:string, Archived:string, CallTrace:string, CommandLine:string, Company:string, Configuration:string, ConfigurationFileHash:string, Contents:string, CreationUtcTime:string, CurrentDirectory:string, Description:string, DestinationHostname:string, DestinationIp:string, DestinationIsIpv6:string, DestinationPort:string, DestinationPortName:string, Details:string, EventType:string, FileVersion:string, GrantedAccess:string, Hash:string, Hashes:string, ID:string, Image:string, ImageLoaded:string, Initiated:string, IntegrityLevel:string, IsExecutable:string, LogonGuid:string, LogonId:string, OriginalFileName:string, ParentCommandLine:string, ParentImage:string, ParentProcessGuid:string, ParentProcessId:string, ParentUser:string, PipeName:string, PreviousCreationUtcTime:string, ProcessGuid:string, ProcessId:string, Product:string, Protocol:string, QueryName:string, QueryResults:string, QueryStatus:string, RuleName:string, SchemaVersion:string, Signature:string, SignatureStatus:string, Signed:string, SourceHostname:string, SourceImage:string, SourceIp:string, SourceIsIpv6:string, SourcePort:string, SourcePortName:string, SourceProcessId:string, SourceThreadId:string, SourceUser:string, State:string, TargetFilename:string, TargetImage:string, TargetObject:string, TargetProcessId:string, TargetUser:string, TerminalSessionId:string, Type:string, User:string, UtcTime:string, Version:string, SourceProcessGuid:string, TargetProcessGuid:string, NewThreadId:string, StartAddress:string, StartModule:string, StartFunction:string, Device:string, NewName:string, Operation:string, EventNamespace:string, Name:string, Query:string, Destination:string, Consumer:string, Filter:string, Session:string, ClientInfo:string, TechniqueId:string, TechniqueName:string, SHA1:string, MD5:string, SHA256:string, IMPHASH:string, SourceProcessGUID:string , TargetProcessGUID:string)
+// Fix for wrong casing in EventID10
+| extend SourceProcessGuid=iff(isnotempty(SourceProcessGUID),SourceProcessGUID,SourceProcessGuid), TargetProcessGuid=iff(isnotempty(TargetProcessGUID),TargetProcessGUID,TargetProcessGuid)
+| project-away SourceProcessGUID, TargetProcessGUID  
+// end fix
+| parse RuleName with * 'technique_id=' TechniqueId ',' * 'technique_name=' TechniqueName
+| parse Hashes with * 'SHA1=' SHA1 ',' * 'MD5=' MD5 ',' * 'SHA256=' SHA256 ',' * 'IMPHASH=' IMPHASH 
